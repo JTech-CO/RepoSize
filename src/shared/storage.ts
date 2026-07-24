@@ -1,9 +1,7 @@
 import type { CacheEntry, Settings } from './types';
 import { DEFAULT_SETTINGS, SETTING_BOUNDS, STORAGE_KEYS } from './constants';
 
-// Thin, typed wrapper around chrome.storage.local for settings and cache.
-// All persistence flows through here so behaviour stays consistent across the
-// background worker, content script, popup and options page.
+// Typed wrapper around chrome.storage.local for settings and cache.
 
 function clampNumber(value: unknown, min: number, max: number, fallback: number): number {
   const n = typeof value === 'number' ? value : Number(value);

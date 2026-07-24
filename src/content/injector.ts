@@ -8,15 +8,10 @@ import {
   type WarningLevel,
 } from '../shared/formatter';
 
-// Badge injection + detail popover.
-//
-// Robustness: the header anchor is resolved through an ordered list of
-// candidate strategies (whitepaper §1.3, §4.4) so a single GitHub markup change
-// cannot break placement. All rendering is idempotent — elements are reused and
-// updated in place, keyed by a stable id.
+// Badge injection + detail popover. The header anchor is resolved through
+// ordered fallback strategies; all rendering is idempotent (reused, keyed by id).
 
-// Static, developer-controlled SVG markup. Never interpolated with external
-// data, so assigning it via innerHTML on an isolated icon span is safe.
+// Static SVG markup (never interpolated), so innerHTML on the icon span is safe.
 const ICONS = {
   size:
     '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">' +
@@ -98,9 +93,8 @@ export function showResult(data: RepoSizeData, settings: Settings): void {
     removeAboutRow();
   }
 
-  // Only disturb an open popover when the underlying data or relevant settings
-  // actually changed — reconcile() re-renders idempotently on every DOM
-  // mutation, and we must not close/reopen the popover each time.
+  // Only refresh an open popover when data/settings actually changed, since
+  // reconcile() re-renders idempotently on every DOM mutation.
   const changed =
     prev?.data?.fetchedAt !== data.fetchedAt ||
     prev.settings.unit !== settings.unit ||
@@ -189,10 +183,8 @@ function applyBadge(el: HTMLElement, opts: BadgeOpts): void {
   if (opts.repoKey) el.setAttribute(DOM.keyAttr, opts.repoKey);
   else el.removeAttribute(DOM.keyAttr);
 
-  // Rebuild children only when the visible content changes. The MutationObserver
-  // watches the document for childList changes, so an unconditional rebuild here
-  // would trigger reconcile → applyBadge → rebuild in a loop. Attribute writes
-  // above are not observed, so they are safe to repeat.
+  // Rebuild children only on change: an unconditional rebuild would trip the
+  // MutationObserver → reconcile → rebuild loop (attribute writes aren't observed).
   const alertIcon = warn || danger || opts.state === 'error';
   const sig = `${alertIcon ? 'alert' : 'size'}|${opts.text}`;
   if (el.dataset.reposizeSig !== sig) {
@@ -470,7 +462,7 @@ function buildDataPopover(el: HTMLElement, data: RepoSizeData, settings: Setting
 
   const note = div('reposize-popover__note');
   note.textContent =
-    'Includes packed .git history — a downloaded source ZIP is usually smaller.';
+    'Includes packed .git history, a downloaded source ZIP is usually smaller.';
   el.appendChild(note);
 
   el.appendChild(buildActions());

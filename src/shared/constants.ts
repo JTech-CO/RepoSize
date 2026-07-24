@@ -28,14 +28,10 @@ export const SETTING_BOUNDS = {
   cacheTTLHours: { min: 0, max: 24 * 30 },
 } as const;
 
-/**
- * Rough factor to estimate a source ZIP download from the reported repo size.
- * The API `size` includes packed .git history, so the exported snapshot is
- * typically a fraction of it. This is intentionally approximate (opt-in only).
- */
+/** Rough factor to estimate a source ZIP from the reported repo size (opt-in). */
 export const ZIP_ESTIMATE_FACTOR = 0.45;
 
-// Stable DOM identifiers/classes for injected UI (namespaced to avoid clashes).
+// Namespaced DOM ids/classes for the injected UI.
 export const DOM = {
   badgeHeaderId: 'reposize-badge-header',
   aboutRowId: 'reposize-about-row',

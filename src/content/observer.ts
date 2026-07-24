@@ -1,17 +1,6 @@
-// Change detection for the content script.
-//
-// GitHub is a client-side-routed app (Turbo / React Router) that re-renders the
-// header and swaps pages without a full reload. A content script lives in an
-// isolated world, so it cannot patch the page's `history` object. We therefore
-// combine three cheap signals into one debounced `reconcile` call:
-//
-//   1. A MutationObserver on <body> (childList/subtree) — fires when GitHub
-//      swaps page content or re-renders the header.
-//   2. `popstate` — back/forward navigation.
-//   3. A slow interval — a last-resort safety net for any missed transition.
-//
-// `reconcile` is expected to be idempotent and cheap: it compares the URL and
-// ensures the badge is present, writing to the DOM only when something changed.
+// Change detection: GitHub navigates client-side without full reloads, so we
+// funnel three cheap signals — a body MutationObserver, popstate, and a slow
+// interval — into one debounced, idempotent `reconcile` call.
 
 export function startWatching(reconcile: () => void): void {
   const debounced = debounce(reconcile, 150);

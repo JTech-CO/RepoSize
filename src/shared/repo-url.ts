@@ -1,9 +1,6 @@
 import type { RepoIdentifier } from './types';
 
-/**
- * First path segments on github.com that are reserved routes (never a user or
- * organisation namespace). Used to reject non-repository pages.
- */
+// Reserved github.com first path segments (never a user/org namespace).
 const RESERVED_OWNERS = new Set<string>([
   'about',
   'account',
@@ -54,20 +51,13 @@ const RESERVED_OWNERS = new Set<string>([
   'watching',
 ]);
 
-/**
- * Second path segments that indicate a special (non-repository) resource even
- * though the first segment looks like an owner. Kept intentionally small.
- */
+// Second segments that are special resources rather than repos.
 const RESERVED_REPO_NAMES = new Set<string>(['sponsors']);
 
 /** Valid GitHub owner/repo name characters. */
 const NAME_RE = /^[A-Za-z0-9._-]+$/;
 
-/**
- * Parse a GitHub URL into an `owner/repo` reference, or `null` when the URL is
- * not a repository page. Sub-pages (e.g. `.../tree/main`, `.../issues`) still
- * resolve to their owning repository.
- */
+/** Parse a GitHub URL into an `owner/repo` ref, or null if it isn't a repo page. */
 export function parseRepoFromUrl(url: string): RepoIdentifier | null {
   let parsed: URL;
   try {

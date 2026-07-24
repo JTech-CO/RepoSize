@@ -2,9 +2,8 @@ import type { DisplayPosition, Settings, SizeUnit } from '../shared/types';
 import { getSettings } from '../shared/storage';
 import { sendMessage } from '../shared/messaging';
 
-// Options page: exposes every setting with auto-save. The background worker
-// normalises + persists each change and returns the canonical settings, which
-// we reflect back into the controls (so clamped numbers snap into range).
+// Options page: every setting with auto-save. The background worker normalises
+// and persists each change; we reflect the returned settings back into the controls.
 
 let settings: Settings;
 let savedTimer: number | undefined;

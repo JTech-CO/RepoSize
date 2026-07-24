@@ -1,18 +1,12 @@
 import { defineManifest } from '@crxjs/vite-plugin';
 
-// Single source of truth for the extension manifest.
-//
-// Design notes (see whitepaper §2.3, §7.1):
-//  - Least privilege: only `storage` (settings + cache) and `activeTab`
-//    (read the current tab's URL from the popup on user click).
-//  - Host permission is limited to the GitHub REST API. The content script is
-//    granted github.com access implicitly through its static `matches`.
-//  - Icons live in `public/icons/*` and are copied to the build root verbatim
-//    by Vite, so they are referenced by their output path here.
+// Extension manifest (single source of truth). Least privilege: only `storage`
+// and `activeTab`; host access limited to the GitHub API. Icons come from
+// public/icons (copied verbatim by Vite) and are referenced by their output path.
 export default defineManifest({
   manifest_version: 3,
   name: 'RepoSize',
-  version: '1.0.0',
+  version: '1.0.1',
   description:
     'Show accurate repository size on GitHub before you download or clone.',
   action: {
@@ -33,9 +27,8 @@ export default defineManifest({
   host_permissions: ['https://api.github.com/*'],
   content_scripts: [
     {
-      // Match every github.com page so the badge survives client-side (Turbo /
-      // React Router) navigations into a repository from anywhere. The script
-      // itself no-ops unless the URL resolves to an `owner/repo` page.
+      // Match every github.com page so the badge survives client-side nav; the
+      // script no-ops unless the URL resolves to an owner/repo page.
       matches: ['https://github.com/*'],
       js: ['src/content/index.ts'],
       css: ['src/content/styles.css'],

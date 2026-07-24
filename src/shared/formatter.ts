@@ -5,12 +5,8 @@ import { ZIP_ESTIMATE_FACTOR } from './constants';
 export type WarningLevel = 'none' | 'warning' | 'danger';
 
 /**
- * Format a repository size (reported by GitHub in 1024-byte KB) into a
- * human-readable string.
- *
- * The source value is converted to bytes first so decimal units are accurate:
- *   - binary  → KiB / MiB / GiB (base 1024)
- *   - decimal → KB  / MB  / GB  (base 1000)
+ * Format a repo size (GitHub reports 1024-byte KB) as a human-readable string.
+ * Converts to bytes first so decimal (base-1000) units are accurate.
  */
 export function formatSize(sizeKB: number, unit: SizeUnit): string {
   const bytes = Math.max(0, Math.round(sizeKB)) * 1024;

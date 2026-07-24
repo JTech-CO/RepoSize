@@ -1,8 +1,7 @@
 import type { ApiError, RepoSizeData, Result, ValidateTokenResult } from './types';
 import { GITHUB_API_BASE, GITHUB_API_VERSION } from './constants';
 
-// GitHub REST API access. Runs inside the background service worker, which
-// holds the `https://api.github.com/*` host permission and is free of page CSP.
+// GitHub REST API access (runs in the background service worker).
 
 interface GitHubRepoResponse {
   full_name?: string;
@@ -11,6 +10,11 @@ interface GitHubRepoResponse {
   private?: boolean;
   stargazers_count?: number;
   message?: string;
+}
+
+interface GitHubTreeResponse {
+  tree?: Array<{ type?: string; size?: number }>;
+  truncated?: boolean;
 }
 
 function baseHeaders(token: string | null): Record<string, string> {
@@ -64,14 +68,24 @@ export async function fetchRepoSize(
         hasToken,
       });
     }
+
+    const defaultBranch = json.default_branch ?? null;
+    let sizeKB = json.size;
+    // GitHub computes repo size asynchronously and can report 0 for recently
+    // created or pushed repos. Fall back to summing the default branch's blobs.
+    if (sizeKB === 0 && defaultBranch) {
+      const treeKB = await fetchTreeSizeKB(owner, repo, defaultBranch, token);
+      if (treeKB && treeKB > 0) sizeKB = treeKB;
+    }
+
     return {
       ok: true,
       data: {
         fullName: json.full_name ?? `${owner}/${repo}`,
-        sizeKB: json.size,
+        sizeKB,
         fetchedAt: Date.now(),
         fromCache: false,
-        defaultBranch: json.default_branch ?? null,
+        defaultBranch,
         isPrivate: Boolean(json.private),
         stargazers:
           typeof json.stargazers_count === 'number'
@@ -82,6 +96,31 @@ export async function fetchRepoSize(
   }
 
   return fail(classifyError(res, hasToken));
+}
+
+/** Sum the default branch's blob sizes (KB); fallback when the API `size` is 0. */
+async function fetchTreeSizeKB(
+  owner: string,
+  repo: string,
+  branch: string,
+  token: string | null,
+): Promise<number | null> {
+  const url =
+    `${GITHUB_API_BASE}/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}` +
+    `/git/trees/${encodeURIComponent(branch)}?recursive=1`;
+  try {
+    const res = await fetch(url, { headers: baseHeaders(token) });
+    if (!res.ok) return null;
+    const json = (await res.json()) as GitHubTreeResponse;
+    if (!Array.isArray(json.tree)) return null;
+    const bytes = json.tree.reduce(
+      (sum, entry) => (entry.type === 'blob' ? sum + (entry.size ?? 0) : sum),
+      0,
+    );
+    return Math.round(bytes / 1024);
+  } catch {
+    return null;
+  }
 }
 
 function classifyError(res: Response, hasToken: boolean): ApiError {

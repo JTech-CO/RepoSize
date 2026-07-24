@@ -12,9 +12,8 @@ import {
 } from './injector';
 import { startWatching } from './observer';
 
-// Content-script entry point (whitepaper §4.3).
-// Detects the current repository, requests its size from the background worker,
-// injects the badge, and keeps everything in sync across SPA navigations.
+// Content-script entry point: detects the current repository, requests its size
+// from the background worker, injects the badge, and keeps it synced across SPA nav.
 
 type View =
   | { kind: 'idle' }
@@ -70,8 +69,7 @@ function reconcile(): void {
     return;
   }
 
-  // Same repository: re-assert placement (GitHub may have re-rendered the
-  // header and dropped our badge). Rendering is idempotent.
+  // Same repo: re-assert placement (GitHub may drop our badge on re-render).
   render();
 }
 

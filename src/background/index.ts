@@ -16,9 +16,7 @@ import {
 } from '../shared/storage';
 import { fetchRepoSize, validateToken } from '../shared/api';
 
-// Background service worker (whitepaper §4.1).
-// Event-driven only: it owns GitHub API access, the repository cache, and
-// message routing. It keeps no long-lived in-memory state.
+// Background service worker: owns GitHub API access, the cache, and message routing.
 
 chrome.runtime.onInstalled.addListener(() => {
   void bootstrap();
@@ -29,7 +27,6 @@ chrome.runtime.onStartup.addListener(() => {
 });
 
 async function bootstrap(): Promise<void> {
-  // Seed + normalise defaults, then drop any stale cache entries.
   const settings = await setSettings({});
   await pruneExpiredCache(settings.cacheTTLHours);
 }
@@ -47,8 +44,7 @@ chrome.runtime.onMessage.addListener((message: RuntimeMessage, _sender, sendResp
         },
       });
     });
-  // Return true to keep the message channel open for the async response.
-  return true;
+  return true; // keep the message channel open for the async response
 });
 
 async function handle(
@@ -98,7 +94,9 @@ async function getRepoSize(payload: {
   }
 
   const result = await fetchRepoSize(owner, repo, settings.pat);
-  if (result.ok) {
+  // Never cache a 0 size (GitHub may not have measured the repo yet), so the
+  // next lookup re-fetches instead of serving a stale 0.
+  if (result.ok && result.data.sizeKB > 0) {
     await setCache(owner, repo, {
       sizeKB: result.data.sizeKB,
       fetchedAt: result.data.fetchedAt,

@@ -1,9 +1,5 @@
-// Remove the build output directory before a fresh build.
-//
-// @crxjs/vite-plugin (2.7.x) + Vite 6 can crash natively on Windows when its
-// `emptyOutDir` step overwrites an existing `dist/` mid-build. Deleting the
-// directory in a separate step beforehand avoids that path entirely, so
-// `npm run build` is reliable on repeat runs.
+// Remove dist/ before a fresh build. Doing it as a separate step (instead of
+// Vite's emptyOutDir) avoids a native crash on Windows + Node 25.
 
 import { rmSync } from 'node:fs';
 

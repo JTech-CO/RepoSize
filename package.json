@@ -1,6 +1,6 @@
 {
   "name": "reposize",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Show accurate repository size on GitHub before you download or clone.",
   "type": "module",
   "private": true,

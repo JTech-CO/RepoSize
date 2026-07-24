@@ -4,9 +4,8 @@ import { sendMessage } from '../shared/messaging';
 import { parseRepoFromUrl } from '../shared/repo-url';
 import { formatRelativeTime, formatSize, getWarningLevel } from '../shared/formatter';
 
-// Popup: shows the active tab's repository size, a unit toggle, and quick token
-// management. Reads the active tab via the `activeTab` permission (granted on
-// the user's click).
+// Popup: shows the active tab's repo size, a unit toggle, and quick token
+// management (reads the active tab via the `activeTab` permission).
 
 let settings: Settings;
 let currentRepo: RepoIdentifier | null = null;

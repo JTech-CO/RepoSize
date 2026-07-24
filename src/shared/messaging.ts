@@ -1,11 +1,8 @@
 import type { ResponseMap, RuntimeMessage } from './types';
 
 /**
- * Typed wrapper over `chrome.runtime.sendMessage`. Resolves to the response
- * type mapped from the message's `type` discriminant.
- *
- * Returns `null` if the background worker is unreachable (e.g. the extension
- * was reloaded), so callers can degrade gracefully instead of throwing.
+ * Typed `chrome.runtime.sendMessage` wrapper. Returns `null` if the background
+ * worker is unreachable (e.g. the extension reloaded) so callers can degrade.
  */
 export async function sendMessage<M extends RuntimeMessage>(
   message: M,

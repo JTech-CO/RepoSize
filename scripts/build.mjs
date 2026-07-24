@@ -1,12 +1,6 @@
-// Reliable production build with automatic retry.
-//
-// Node 25.x on Windows sporadically crashes native tooling with exit code
-// 0xC0000409 (STATUS_STACK_BUFFER_OVERRUN) — it is an environment/runtime
-// instability, not a build error. This wrapper cleans dist/ and runs the Vite
-// build, retrying only on that native crash. Real build errors (e.g. a syntax
-// error) surface immediately without retrying.
-//
-// Tip: for a permanently stable toolchain, use a Node LTS release (22 or 24).
+// Reliable production build with automatic retry. Node 25 on Windows sporadically
+// crashes the native build tooling (exit 0xC0000409); this reruns the Vite build
+// on that crash only. Real build errors surface immediately. Prefer Node LTS.
 
 import { spawnSync } from 'node:child_process';
 import { existsSync, rmSync } from 'node:fs';
