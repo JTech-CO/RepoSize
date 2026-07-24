@@ -2,7 +2,7 @@
 
 > **See a GitHub repository's real size before you download or clone it.**
 
-**[Chrome Web Store](#)** · **[Privacy Policy](privacy-policy.html)**
+**[Chrome Web Store](#)** · **[Privacy Policy](<https://jtech-co.github.io/RepoSize/privacy-policy.html>)**
 
 ## 1. Introduction
 
@@ -83,7 +83,5 @@ scripts/              # build / clean / zip / icon generation
 ## 5. Info
 
 - **License**: MIT
-- **Privacy**: [Privacy Policy](privacy-policy.html) — no backend, no tracking;
-  all data stays on your device.
+- **Privacy**: [Privacy Policy](<https://jtech-co.github.io/RepoSize/privacy-policy.html>)
 - **Chrome Web Store**: [link](#) _(coming soon)_
-- **Contact**: you@example.com
