@@ -2,7 +2,7 @@
 
 > **See a GitHub repository's real size before you download or clone it.**
 
-**[Chrome Web Store](#) - coning soon** · **[Privacy Policy](<https://jtech-co.github.io/RepoSize/privacy-policy.html>)**
+**[Chrome Web Store](#) - coming soon** · **[Privacy Policy](<https://jtech-co.github.io/RepoSize/privacy-policy.html>)**
 
 ## 1. Introduction
 
