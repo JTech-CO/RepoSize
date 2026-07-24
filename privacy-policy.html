@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RepoSize — Privacy Policy</title>
+    <meta
+      name="description"
+      content="Privacy policy for the RepoSize Chrome extension. RepoSize has no backend, no analytics, and stores everything locally on your device."
+    />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --fg: #1f2328;
+        --fg-muted: #59636e;
+        --border: #d1d9e0;
+        --subtle: #f6f8fa;
+        --accent: #0969da;
+        --card: #ffffff;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0d1117;
+          --fg: #e6edf3;
+          --fg-muted: #9198a1;
+          --border: #3d444d;
+          --subtle: #151b23;
+          --accent: #4493f8;
+          --card: #0d1117;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        padding: 48px 20px 64px;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans',
+          Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+      }
+
+      .wrap {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      /* Header */
+      .head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .logo {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 11px;
+        background: #161b22;
+        flex: 0 0 auto;
+      }
+
+      .logo svg :nth-child(1) {
+        fill: #3fb950;
+      }
+      .logo svg :nth-child(2) {
+        fill: #d29922;
+      }
+      .logo svg :nth-child(3) {
+        fill: #f85149;
+      }
+
+      .head h1 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+
+      .head p {
+        margin: 2px 0 0;
+        color: var(--fg-muted);
+        font-size: 14px;
+      }
+
+      /* Intro */
+      .intro {
+        margin: 28px 0 0;
+        font-size: 17px;
+        color: var(--fg);
+      }
+
+      .tldr {
+        margin: 24px 0 8px;
+        padding: 16px 18px;
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent);
+        border-radius: 8px;
+        background: var(--subtle);
+      }
+
+      .tldr h2 {
+        margin: 0 0 8px;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--fg-muted);
+      }
+
+      .tldr ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .tldr li {
+        margin: 4px 0;
+      }
+
+      /* Sections */
+      section {
+        margin-top: 36px;
+      }
+
+      h2 {
+        margin: 0 0 10px;
+        font-size: 19px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+
+      p {
+        margin: 0 0 12px;
+        color: var(--fg);
+      }
+
+      ul {
+        margin: 0 0 12px;
+        padding-left: 22px;
+      }
+
+      li {
+        margin: 6px 0;
+      }
+
+      .muted {
+        color: var(--fg-muted);
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.9em;
+        padding: 1px 5px;
+        border-radius: 5px;
+        background: var(--subtle);
+        border: 1px solid var(--border);
+      }
+
+      /* Permissions table */
+      .table-wrap {
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 15px;
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 10px 12px;
+        border: 1px solid var(--border);
+        vertical-align: top;
+      }
+
+      th {
+        background: var(--subtle);
+        font-weight: 600;
+      }
+
+      td code {
+        white-space: nowrap;
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 48px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+        color: var(--fg-muted);
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="head">
+        <span class="logo" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="24" height="24">
+            <rect x="2" y="3" width="7" height="2.2" rx="1.1" />
+            <rect x="2" y="6.9" width="10" height="2.2" rx="1.1" />
+            <rect x="2" y="10.8" width="12" height="2.2" rx="1.1" />
+          </svg>
+        </span>
+        <div>
+          <h1>RepoSize — Privacy Policy</h1>
+          <p>Last updated: July 24, 2026</p>
+        </div>
+      </header>
+
+      <p class="intro">
+        RepoSize is a browser extension that shows a GitHub repository's size
+        before you download or clone it. It is built to respect your privacy:
+        there is no backend server, no analytics, and no tracking. Everything it
+        stores stays on your own device.
+      </p>
+
+      <div class="tldr">
+        <h2>In short</h2>
+        <ul>
+          <li>We do not operate any server and cannot collect your data.</li>
+          <li>Settings, cache, and an optional token are stored locally only.</li>
+          <li>The only network requests go from your browser to GitHub's API.</li>
+          <li>No analytics, no tracking, no ads, nothing sold or shared.</li>
+        </ul>
+      </div>
+
+      <section>
+        <h2>Data stored on your device</h2>
+        <p>RepoSize saves the following using the browser's local storage
+          (<code>chrome.storage.local</code>) — on your device only. It is never
+          transmitted to us (we have no servers) and never synced to your browser
+          account:</p>
+        <ul>
+          <li><strong>Preferences</strong> — your settings such as size units,
+            badge position, warning threshold, and cache lifetime.</li>
+          <li><strong>Size cache</strong> — the names and sizes of repositories
+            you have viewed, kept temporarily so RepoSize does not re-request the
+            same data.</li>
+          <li><strong>Personal Access Token (optional)</strong> — if you choose
+            to add a GitHub token, it is stored locally and used only to
+            authenticate your requests to GitHub.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Data sent to GitHub</h2>
+        <p>To display a repository's size, RepoSize requests that repository's
+          public metadata from the GitHub REST API
+          (<code>https://api.github.com</code>). These requests are made directly
+          from your browser to GitHub over HTTPS; RepoSize does not proxy, store,
+          or log them.</p>
+        <p>If you have added a Personal Access Token, it is sent only to GitHub,
+          in the standard <code>Authorization</code> header, so that you can view
+          private repositories and receive a higher API rate limit. Your token is
+          never sent anywhere else.</p>
+        <p class="muted">Any data you send to GitHub is handled under GitHub's own
+          <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noreferrer noopener">Privacy Statement</a>.</p>
+      </section>
+
+      <section>
+        <h2>What RepoSize does not do</h2>
+        <ul>
+          <li>No analytics, telemetry, tracking, or fingerprinting.</li>
+          <li>No advertising.</li>
+          <li>No selling, renting, or sharing of your information.</li>
+          <li>No backend operated by us — there is nowhere for us to collect
+            your data.</li>
+          <li>No reading of your browsing history. RepoSize only reads the URL of
+            the GitHub tab you are actively on, to identify which repository to
+            look up.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Permissions we request</h2>
+        <p>RepoSize requests the minimum permissions needed to do its job:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Permission</th>
+                <th>Why it is needed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>storage</code></td>
+                <td>Save your settings and the size cache on your device.</td>
+              </tr>
+              <tr>
+                <td><code>activeTab</code></td>
+                <td>Read the URL of the current tab when you open the popup, to
+                  identify the repository you are viewing.</td>
+              </tr>
+              <tr>
+                <td><code>api.github.com</code></td>
+                <td>Fetch repository sizes from GitHub's public API.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Your control and data deletion</h2>
+        <ul>
+          <li>Cached data expires automatically based on your <em>Cache
+            lifetime</em> setting.</li>
+          <li>You can clear all cached data at any time from the options page
+            (<em>Clear cache</em>).</li>
+          <li>You can remove your token at any time (<em>Remove</em>).</li>
+          <li>Uninstalling the extension permanently deletes everything RepoSize
+            stored on your device.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Third-party services</h2>
+        <p>GitHub (<code>api.github.com</code>) is the only external service
+          RepoSize communicates with, and only to retrieve repository sizes.
+          RepoSize does not use any analytics, advertising, or third-party
+          tracking service.</p>
+      </section>
+
+      <section>
+        <h2>Children's privacy</h2>
+        <p>RepoSize is a developer tool that is not directed at children and does
+          not knowingly collect personal information from anyone.</p>
+      </section>
+
+      <section>
+        <h2>Changes to this policy</h2>
+        <p>If this policy changes, the "Last updated" date above will be revised.
+          Meaningful changes will be reflected on this page.</p>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <p>Questions about this policy or RepoSize's data practices? Contact
+          <a href="mailto:you@example.com">you@example.com</a>.</p>
+      </section>
+
+      <footer>RepoSize — a lightweight, privacy-respecting extension for GitHub.</footer>
+    </div>
+  </body>
+</html>

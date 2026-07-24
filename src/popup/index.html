@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RepoSize</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <main class="rs">
+      <header class="rs-head">
+        <span class="rs-logo" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="18" height="18">
+            <rect x="2" y="3" width="7" height="2.2" rx="1.1" />
+            <rect x="2" y="6.9" width="10" height="2.2" rx="1.1" />
+            <rect x="2" y="10.8" width="12" height="2.2" rx="1.1" />
+          </svg>
+        </span>
+        <h1 class="rs-title">RepoSize</h1>
+        <button id="rs-refresh" class="rs-icon-btn" type="button" title="Refresh" aria-label="Refresh" hidden>
+          <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true">
+            <path d="M8 2.5a5.5 5.5 0 1 0 5.478 5.042.75.75 0 0 1 1.495.114A7 7 0 1 1 8 1v1.5Z" />
+            <path d="M8 0.5 11 3 8 5.5V.5Z" />
+          </svg>
+        </button>
+      </header>
+
+      <section id="rs-status" class="rs-card" aria-live="polite"></section>
+
+      <section class="rs-controls">
+        <div class="rs-row">
+          <span class="rs-label">Units</span>
+          <div class="rs-seg" role="group" aria-label="Size units">
+            <button type="button" class="rs-seg-btn" data-unit="binary">Binary</button>
+            <button type="button" class="rs-seg-btn" data-unit="decimal">Decimal</button>
+          </div>
+        </div>
+      </section>
+
+      <details class="rs-token">
+        <summary>
+          GitHub token
+          <span id="rs-token-state" class="rs-token-state"></span>
+        </summary>
+        <div class="rs-token-body">
+          <input
+            id="rs-token-input"
+            class="rs-input"
+            type="password"
+            placeholder="ghp_… (optional)"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <div class="rs-token-actions">
+            <button id="rs-token-save" class="rs-btn rs-btn-primary" type="button">Save</button>
+            <button id="rs-token-clear" class="rs-btn" type="button">Clear</button>
+          </div>
+          <p id="rs-token-msg" class="rs-token-msg" role="status"></p>
+          <p class="rs-hint">
+            Only needed for private repos or higher rate limits. Stored locally on this device.
+          </p>
+        </div>
+      </details>
+
+      <footer class="rs-foot">
+        <a id="rs-options" href="#">All settings</a>
+        <span class="rs-ver">v1.0.0</span>
+      </footer>
+    </main>
+    <script type="module" src="./popup.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RepoSize — Settings</title>
+    <link rel="stylesheet" href="./options.css" />
+  </head>
+  <body>
+    <main class="op">
+      <header class="op-head">
+        <span class="op-logo" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="22" height="22">
+            <rect x="2" y="3" width="7" height="2.2" rx="1.1" />
+            <rect x="2" y="6.9" width="10" height="2.2" rx="1.1" />
+            <rect x="2" y="10.8" width="12" height="2.2" rx="1.1" />
+          </svg>
+        </span>
+        <div class="op-head-text">
+          <h1>RepoSize</h1>
+          <p class="op-sub">Settings</p>
+        </div>
+        <span id="op-saved" class="op-saved" role="status" hidden>Saved ✓</span>
+      </header>
+
+      <section class="op-card">
+        <h2>Display</h2>
+
+        <div class="op-field">
+          <span class="op-label">Units</span>
+          <div class="op-control">
+            <div class="op-seg" id="op-unit" role="radiogroup" aria-label="Size units">
+              <button type="button" data-unit="binary">Binary · MiB</button>
+              <button type="button" data-unit="decimal">Decimal · MB</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="op-field">
+          <span class="op-label">Badge position</span>
+          <div class="op-control">
+            <div class="op-seg" id="op-position" role="radiogroup" aria-label="Badge position">
+              <button type="button" data-position="header">Repository header</button>
+              <button type="button" data-position="about">About sidebar</button>
+              <button type="button" data-position="both">Both</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="op-field">
+          <label class="op-label" for="op-threshold">Warning threshold</label>
+          <div class="op-control">
+            <div class="op-inline">
+              <input id="op-threshold" class="op-num" type="number" min="1" step="1" />
+              <span>MiB</span>
+            </div>
+            <p class="op-help">Repositories this size or larger show a warning colour.</p>
+          </div>
+        </div>
+
+        <div class="op-field">
+          <span class="op-label">Estimated ZIP</span>
+          <div class="op-control">
+            <label class="op-check">
+              <input id="op-zip" type="checkbox" />
+              Show an approximate source ZIP size
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="op-card">
+        <h2>Cache</h2>
+
+        <div class="op-field">
+          <label class="op-label" for="op-ttl">Cache lifetime</label>
+          <div class="op-control">
+            <div class="op-inline">
+              <input id="op-ttl" class="op-num" type="number" min="0" step="1" />
+              <span>hours (0 = never expire)</span>
+            </div>
+            <p class="op-help">
+              Cached sizes avoid repeated API calls and help stay under the rate
+              limit.
+            </p>
+          </div>
+        </div>
+
+        <div class="op-field">
+          <span class="op-label">Stored data</span>
+          <div class="op-control">
+            <div class="op-inline">
+              <button id="op-clear-cache" class="op-btn" type="button">Clear cache</button>
+              <span id="op-clear-msg" class="op-inline-msg" role="status"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="op-card">
+        <h2>Access</h2>
+
+        <div class="op-field">
+          <label class="op-label" for="op-token">Personal Access Token</label>
+          <div class="op-control">
+            <input
+              id="op-token"
+              class="op-input"
+              type="password"
+              placeholder="ghp_… (optional)"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <div class="op-token-actions">
+              <button id="op-token-save" class="op-btn op-btn-primary" type="button">Save token</button>
+              <button id="op-token-clear" class="op-btn" type="button">Remove</button>
+              <span id="op-token-state" class="op-inline-msg" role="status"></span>
+            </div>
+            <p id="op-token-msg" class="op-token-msg"></p>
+            <p class="op-help">
+              Optional — for private repos or higher rate limits
+              (<a href="https://github.com/settings/tokens" target="_blank" rel="noreferrer noopener">create a token</a>).
+              Stored locally, never synced.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="op-foot">RepoSize v1.0.0 · Settings are stored on this device.</footer>
+    </main>
+    <script type="module" src="./options.ts"></script>
+  </body>
+</html>
